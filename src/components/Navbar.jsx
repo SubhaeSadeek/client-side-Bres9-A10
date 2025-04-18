@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
+import ThemeToggle from "../ThemeToggle";
 
 const Navbar = () => {
 	const { user, signOutUser } = useContext(AuthContext);
@@ -65,6 +66,7 @@ const Navbar = () => {
 				<ul className="menu menu-horizontal px-1">{navigationLink}</ul>
 			</div>
 			<div className="navbar-end gap-1.5">
+				<ThemeToggle></ThemeToggle>
 				{user ? (
 					<>
 						<p>{user.email}</p>
