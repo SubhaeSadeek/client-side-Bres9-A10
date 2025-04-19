@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/chill-Gamer-Logo.png";
 import { AuthContext } from "../provider/AuthProvider";
 import ThemeToggle from "../ThemeToggle";
 
@@ -59,7 +60,7 @@ const Navbar = () => {
 					</ul>
 				</div>
 				<a className="text-xl font-bold cursor-pointer hover:scale-110  hover:bg-white/30 hover:p-2 hover:rounded-badge duration-500">
-					Chill Gamers
+					<img className="w-1/3" src={logo} alt="" />
 				</a>
 			</div>
 			<div className="navbar-center hidden lg:flex">
