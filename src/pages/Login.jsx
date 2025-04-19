@@ -21,6 +21,8 @@ const Login = () => {
 					setIsCredential(error.message);
 				}
 			});
+		e.target.reset();
+		// navigate("/");
 	};
 
 	const handleSignUpGoogle = () => {
