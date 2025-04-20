@@ -8,6 +8,7 @@ import Layout from "../pages/Layout";
 import Login from "../pages/Login";
 import MyReviews from "../pages/MyReviews";
 import Register from "../pages/Register";
+import WatchList from "../pages/WatchList";
 import PrivateRoute from "./PrivateRoute";
 
 const Routers = createBrowserRouter([
@@ -17,17 +18,17 @@ const Routers = createBrowserRouter([
 		errorElement: <Error></Error>,
 		children: [
 			{
-				path: "/",
+				path: "",
 				element: <Home></Home>,
 				loader: () => fetch("/coupon.json"),
 			},
 			{
-				path: "/reviews",
+				path: "/allReviews",
 				element: <AllReviews></AllReviews>,
 			},
 
 			{
-				path: "addreview",
+				path: "addReview",
 				element: (
 					<PrivateRoute>
 						<AddReview></AddReview>
@@ -47,6 +48,14 @@ const Routers = createBrowserRouter([
 				element: (
 					<PrivateRoute>
 						<UpdateReview></UpdateReview>
+					</PrivateRoute>
+				),
+			},
+			{
+				path: "/watchList",
+				element: (
+					<PrivateRoute>
+						<WatchList></WatchList>
 					</PrivateRoute>
 				),
 			},

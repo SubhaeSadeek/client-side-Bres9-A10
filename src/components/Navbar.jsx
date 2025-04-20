@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../assets/chill-Gamer-Logo.png";
 import { AuthContext } from "../provider/AuthProvider";
 import ThemeToggle from "../ThemeToggle";
 
 const Navbar = () => {
 	const { user, signOutUser } = useContext(AuthContext);
+	const navigate = useNavigate();
 	const signOutUsers = () => {
 		signOutUser()
 			.then(() => {
@@ -14,6 +15,7 @@ const Navbar = () => {
 			.catch((error) => {
 				console.log("Error while signed out", error);
 			});
+		navigate("");
 	};
 	const navigationLink = (
 		<>
@@ -21,13 +23,16 @@ const Navbar = () => {
 				<NavLink to={"/"}>Home</NavLink>
 			</li>
 			<li>
-				<NavLink to={"/reviews"}>All Reviews</NavLink>
+				<NavLink to={"/allReviews"}>All Reviews</NavLink>
 			</li>
 			<li>
-				<NavLink to={"/addreview"}>Add Review</NavLink>
+				<NavLink to={"/addReview"}>Add Review</NavLink>
 			</li>
 			<li>
-				<NavLink to={"/myreview"}>My Reviews</NavLink>
+				<NavLink to={"/myReview"}>My Reviews</NavLink>
+			</li>
+			<li>
+				<NavLink to={"/watchList"}>Game Watchlist</NavLink>
 			</li>
 		</>
 	);

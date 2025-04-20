@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 
 const PrivateRoute = ({ children }) => {
 	const { user, loading } = useContext(AuthContext);
+	const location = useLocation();
 	if (loading) {
 		return <span className="loading loading-bars loading-lg"></span>;
 	}
@@ -21,7 +22,19 @@ const PrivateRoute = ({ children }) => {
 				secondary: "#FFFAEE",
 			},
 		});
-	return <div>{user ? children : <Navigate to={"/login"}></Navigate>}</div>;
+	return (
+		<div>
+			{user ? (
+				children
+			) : (
+				<Navigate
+					to={"/login"}
+					state={{ from: location }}
+					replace={true}
+				></Navigate>
+			)}
+		</div>
+	);
 };
 
 PrivateRoute.propTypes = {

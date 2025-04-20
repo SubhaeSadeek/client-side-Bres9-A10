@@ -10,7 +10,7 @@
 
 ### 1. Project Name
 
-This project is for the requirement to fulfill the task given to build an application using _Node, express, MongoDb_ **_WE CAN NAME IT LEARNING Serverside and Dataqbase connection with API._**
+This project is for the requirement to fulfill the task given to build an application using _Node, express, MongoDb_ **_WE CAN NAME IT LEARNING Serverside and Database connection with API._**
 
 ### 2. Fundamental concepts used in the project
 
@@ -28,7 +28,7 @@ This project is for the requirement to fulfill the task given to build an applic
 
 I have used **\_Express and mongoDB driver for node\_** to manage Database and APIs.
 
-### 4. 5 features of your project
+### 4. Five features of your project
 
 <ol>
 <li>Sendind data from client to DB via Server API</li>

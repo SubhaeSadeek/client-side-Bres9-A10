@@ -1,12 +1,16 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import useTitle from "../utils/useTitle";
 
 const Login = () => {
 	useTitle("Sign In");
+	const navigate = useNavigate();
+	const location = useLocation();
 	const [isCredential, setIsCredential] = useState("");
 	const { signInUser, googleSignIn } = useContext(AuthContext);
+
+	const from = location.state?.from?.pathname || "/";
 
 	const handleSignInUser = (e) => {
 		e.preventDefault();
@@ -22,12 +26,12 @@ const Login = () => {
 				}
 			});
 		e.target.reset();
-		// navigate("/");
+		navigate(from, { replace: true });
 	};
 
 	const handleSignUpGoogle = () => {
 		googleSignIn();
-		// navigate("/");
+		navigate(from, { replace: true });
 	};
 
 	useEffect(() => {
