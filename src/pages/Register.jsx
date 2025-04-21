@@ -1,14 +1,18 @@
+import { updateProfile } from "firebase/auth";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 import useTitle from "../utils/useTitle";
 
 const Register = () => {
 	useTitle("Sign Up");
+	const location = useLocation();
+	const navigate = useNavigate();
+	const from = location?.state?.from?.pathname || "/";
 	const { createUser, googleSignIn, userProfileInfo } = useContext(AuthContext);
 	// const navigate = useNavigate();
 	const [inputValidate, setInputValidate] = useState("");
-	const [showPassword, setShowPassword] = useState(false);
 
 	const handleRegisterSubmit = (e) => {
 		setInputValidate("");
@@ -39,14 +43,48 @@ const Register = () => {
 
 		createUser(emailValue, passkeyValue)
 			.then((result) => {
-				userProfileInfo(displayName, photoURL);
-				console.log(result);
+				const user = result.user;
+				return updateProfile(user, {
+					displayName: `${displayName}`,
+					photoURL: `${photoURL}`,
+				}).then(() => {
+					if (result.user) {
+						Swal.fire({
+							title: "Success!",
+							text: `${result?.user?.displayName}, You are registered successfully with ${result.user.email} !`,
+							icon: "success",
+							confirmButtonText: "Ok",
+						});
+					}
+
+					const userData = {
+						email: user.email,
+						displayName: user.displayName,
+						photoURL: user.photoURL,
+						signInTime: user.metadata.lastSignInTime,
+					};
+					fetch("http://localhost:5001/user", {
+						method: "POST",
+						headers: { "content-type": "application/json" },
+						body: JSON.stringify(userData),
+					});
+					userProfileInfo(displayName, photoURL);
+					console.log(userData);
+					console.log(result);
+				});
 			})
 			.catch((error) => {
-				console.log("ERROR from register page", error);
+				if (error.code) {
+					Swal.fire({
+						title: "Success!",
+						text: `${error?.message}`,
+						icon: "error",
+						confirmButtonText: "Try Again",
+					});
+				}
 			});
 		e.target.reset();
-		// navigate("/");
+		navigate(from, { replace: true });
 	};
 
 	const handleSignUpGoogle = () => {
@@ -55,9 +93,12 @@ const Register = () => {
 
 	return (
 		<div>
-			<div className="max-w-xl mx-auto mt-32 ">
-				<h2 className="text-3xl font-bold">Register Here</h2>
-				<form onSubmit={handleRegisterSubmit} className="fieldset relative">
+			<div className="md:w-3/5 mx-auto mt-12">
+				<h2 className="text-3xl md:w-3/5 mx-auto font-bold ">Register Here</h2>
+				<form
+					onSubmit={handleRegisterSubmit}
+					className="fieldset relative md:w-1/2 mx-auto"
+				>
 					<label className="fieldset-label">Name</label>
 					<input
 						name="userName"
@@ -84,14 +125,10 @@ const Register = () => {
 					<label className="fieldset-label">Password</label>
 					<input
 						name="passkey"
-						type={showPassword ? "text" : "password"}
+						type="password"
 						className="input"
 						placeholder="Password"
 					/>
-					<button
-						onClick={() => setShowPassword(!showPassword)}
-						className="btn btn-xs absolute left-72 top-62"
-					></button>
 					<label className="fieldset-label">Confirm Password</label>
 					<input
 						name="passkeyConfirm"
@@ -101,7 +138,7 @@ const Register = () => {
 					/>
 					<div>
 						Already registered?{" "}
-						<Link to={"/login"} className="link link-hover text-green-500">
+						<Link to={"/login"} className="link link-hover text-green-800">
 							{" "}
 							Please Login here...{" "}
 						</Link>
@@ -109,12 +146,14 @@ const Register = () => {
 					{inputValidate && (
 						<p className="text-lg text-red-600">{inputValidate}</p>
 					)}
-					<button className="btn btn-accent mt-4 w-80">Register</button>
+					<button className="btn btn-accent mt-4 w-40 md:w-80 mx-auto">
+						Register
+					</button>
 				</form>
-				<div className="mt-3">
+				<div className="mt-3 md:w-3/5 mx-auto flex justify-center md:pl-4 ">
 					<button
 						onClick={handleSignUpGoogle}
-						className="btn bg-white text-black border-[#e5e5e5] w-80 hover:bg-accent"
+						className="btn bg-white text-black border-[#e5e5e5]  md:w-80 hover:bg-accent"
 					>
 						<svg
 							aria-label="Google logo"

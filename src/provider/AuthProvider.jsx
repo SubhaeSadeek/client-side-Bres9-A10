@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
 		const provider = new GoogleAuthProvider();
 		signInWithPopup(auth, provider)
 			.then((resutl) => {
-				console.log(resutl);
+				console.log(resutl.user);
 			})
 			.catch((error) => {
 				console.log("ERROR", error);

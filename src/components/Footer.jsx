@@ -7,14 +7,14 @@ const Footer = () => {
 				<Link to={"/"} className="link link-hover">
 					Home
 				</Link>
-				<Link to={"/"} className="link link-hover">
-					Brands
+				<Link to={"/allReviews"} className="link link-hover">
+					All Review
 				</Link>
-				<Link to={"/myprofile"} className="link link-hover">
-					My Profile
+				<Link to={"/addReview"} className="link link-hover">
+					Add Review
 				</Link>
-				<Link to={"/aboutdev"} className="link link-hover">
-					About Dev
+				<Link to={"/myReview"} className="link link-hover">
+					My Review
 				</Link>
 			</nav>
 			<nav>
@@ -56,8 +56,8 @@ const Footer = () => {
 			</nav>
 			<aside>
 				<p>
-					Copyright © {new Date().getFullYear()} - All right reserved by Coupon
-					Magix
+					Copyright © {new Date().getFullYear()} - All right reserved by Chill
+					Gamers
 				</p>
 			</aside>
 		</footer>
