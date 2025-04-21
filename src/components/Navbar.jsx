@@ -20,19 +20,74 @@ const Navbar = () => {
 	const navigationLink = (
 		<>
 			<li>
-				<NavLink to={"/"}>Home</NavLink>
+				<NavLink
+					to={"/"}
+					style={({ isActive }) => {
+						return {
+							fontWeight: isActive ? "bold" : "",
+							color: isActive ? "red" : "",
+							marginRight: "1rem",
+						};
+					}}
+				>
+					Home
+				</NavLink>
 			</li>
 			<li>
-				<NavLink to={"/allReviews"}>All Reviews</NavLink>
+				<NavLink
+					to={"/allReviews"}
+					style={({ isActive }) => {
+						return {
+							fontWeight: isActive ? "bold" : "",
+							color: isActive ? "red" : "",
+							marginRight: "1rem",
+						};
+					}}
+				>
+					All Reviews
+				</NavLink>
 			</li>
 			<li>
-				<NavLink to={"/addReview"}>Add Review</NavLink>
+				<NavLink
+					to={"/addReview"}
+					style={({ isActive }) => {
+						return {
+							fontWeight: isActive ? "bold" : "",
+							color: isActive ? "red" : "",
+							marginRight: "1rem",
+						};
+					}}
+				>
+					Add Review
+				</NavLink>
 			</li>
 			<li>
-				<NavLink to={"/myReview"}>My Reviews</NavLink>
+				<NavLink
+					to={"/myReview"}
+					style={({ isActive }) => {
+						return {
+							fontWeight: isActive ? "bold" : "",
+							color: isActive ? "red" : "",
+							marginRight: "1rem",
+						};
+					}}
+				>
+					My Reviews
+				</NavLink>
 			</li>
 			<li>
-				<NavLink to={"/watchList"}>Game Watchlist</NavLink>
+				<NavLink
+					to={"/watchList"}
+					style={({ isActive }) => {
+						return {
+							fontWeight: isActive ? "bold" : "",
+							color: isActive ? "red" : "",
+							marginRight: "3rem",
+						};
+					}}
+				>
+					My Watchlist
+				</NavLink>
 			</li>
 		</>
 	);
@@ -69,7 +124,7 @@ const Navbar = () => {
 				</a>
 			</div>
 			<div className="navbar-center hidden lg:flex">
-				<ul className="menu menu-horizontal px-1">{navigationLink}</ul>
+				<ul className=" menu-horizontal px-1">{navigationLink}</ul>
 			</div>
 			<div className="navbar-end gap-1.5">
 				<ThemeToggle></ThemeToggle>
