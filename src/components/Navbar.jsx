@@ -130,7 +130,23 @@ const Navbar = () => {
 				<ThemeToggle></ThemeToggle>
 				{user ? (
 					<>
-						<p>{user.email}</p>
+						{/* <p>{user.email}</p> */}
+
+						{/* *************** */}
+
+						<div className="tooltip tooltip-bottom">
+							<div className="tooltip-content">
+								<div className="animate-bounce text-orange-400 -rotate-5 text-lg font-semibold">
+									{user.displayName}
+								</div>
+							</div>
+							<div className="avatar">
+								<div className="w-10 rounded-full">
+									<img src={user?.photoURL} />
+								</div>
+							</div>
+						</div>
+						{/* *************** */}
 						<button
 							onClick={signOutUsers}
 							className="btn btn-neutral rounded-4xl"
