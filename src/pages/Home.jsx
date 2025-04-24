@@ -1,3 +1,5 @@
+import GameCardContainer from "../components/GameCardContainer";
+
 const Home = () => {
 	const carousalScroll = (e, img_num) => {
 		e.preventDefault();
@@ -97,6 +99,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
+			<GameCardContainer></GameCardContainer>
 		</div>
 	);
 };

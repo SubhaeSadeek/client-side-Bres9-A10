@@ -76,7 +76,7 @@ const Register = () => {
 			.catch((error) => {
 				if (error.code) {
 					Swal.fire({
-						title: "Success!",
+						title: "Ouch!",
 						text: `${error?.message}`,
 						icon: "error",
 						confirmButtonText: "Try Again",

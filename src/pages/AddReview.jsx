@@ -12,6 +12,8 @@ const AddReview = () => {
 		const ratingOfGame = e.target.rating.value;
 		const genre = e.target.genre.value;
 		const review = e.target.review.value;
+		const userName = user.displayName;
+		const email = user.email;
 
 		const addedReview = {
 			title,
@@ -20,6 +22,8 @@ const AddReview = () => {
 			ratingOfGame,
 			genre,
 			review,
+			userName,
+			email,
 		};
 		console.log(addedReview);
 		fetch("http://localhost:5001/review", {
