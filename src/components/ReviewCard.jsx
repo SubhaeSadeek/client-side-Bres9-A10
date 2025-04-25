@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 
 const ReviewCard = ({ review }) => {
-	const { title, image, yearOfPublished, ratingOfGame, genre } = review;
+	const { title, image, yearOfPublished, ratingOfGame, genre, _id } = review;
+
 	return (
 		<div className="card card-side justify-around w-5/6 mx-auto bg-accent-content/20 shadow-sm mb-4 md:pl-12 ">
 			<figure>
@@ -16,7 +17,7 @@ const ReviewCard = ({ review }) => {
 				<p className="">Genre: {genre} </p>
 				<p className="">Publishing Year: {yearOfPublished}</p>
 				<p className="">Rating: {ratingOfGame}</p>
-				<NavLink to={"review/:id"}>
+				<NavLink to={`/details/${_id}`}>
 					<button className="btn btn-accent">Explore Detail</button>
 				</NavLink>
 			</div>

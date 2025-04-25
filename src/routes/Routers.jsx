@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Error from "../components/Error";
+import ReviewDetail from "../components/ReviewDetail";
 import UpdateReview from "../components/UpdateReview";
 import AddReview from "../pages/AddReview";
 import AllReviews from "../pages/AllReviews";
@@ -26,6 +27,12 @@ const Routers = createBrowserRouter([
 				path: "/allReviews",
 				element: <AllReviews></AllReviews>,
 				loader: () => fetch("http://localhost:5001/review"),
+			},
+			{
+				path: "/details/:id",
+				element: <ReviewDetail></ReviewDetail>,
+				loader: ({ params }) =>
+					fetch(`http://localhost:5001/review/${params.id}`),
 			},
 
 			{

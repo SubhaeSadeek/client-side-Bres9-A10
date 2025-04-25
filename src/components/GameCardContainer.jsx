@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 const LIMIT = 6;
 const GameCardContainer = () => {
 	const [reviews, setReviews] = useState([]);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(null);
+	const [totalReviews, setTotalReviews] = useState(0);
+
 	const [loading, setLoading] = useState(false);
 
 	const fetchReviews = async () => {
@@ -17,6 +20,7 @@ const GameCardContainer = () => {
 				return res.json();
 			})
 			.then((data) => {
+				setTotalReviews(data.total);
 				if (page === 1) {
 					setReviews(data.reviews);
 				} else {
@@ -36,36 +40,56 @@ const GameCardContainer = () => {
 			setPage((prev) => prev + 1);
 		}
 	};
+	console.log("here we have ", page, totalPages, totalReviews);
 	return (
 		<div>
 			<div className="grid grid-cols-1 md:grid-cols-3	gap-4 w-11/12 mx-auto my-12 ">
 				{reviews.map((review) => (
-					<div className="card bg-fuchsia-300  shadow-sm" key={review._id}>
-						<figure className="px-10 pt-10">
-							{/* <img
-								src=""
+					<div className="card bg-base-300 shadow-sm" key={review._id}>
+						<figure className="px-4 pt-4">
+							<img
+								src={review.image}
 								alt={`image showing cover of ${review?.title}`}
 								className="rounded-xl"
-							/> */}
+							/>
 						</figure>
 						<div className="card-body items-center text-center">
 							<h2 className="card-title">{review?.title}</h2>
 							<p>rating: {review?.yearOfPublished}</p>
 							<p>rating: {review?.ratingOfGame}</p>
 						</div>
+						<div className="card-actions justify-center mb-4">
+							<NavLink to={"/allReviews/:id"}>
+								<button className="btn btn-info">Detail Review Here</button>
+							</NavLink>
+						</div>
 					</div>
 				))}
 			</div>
 
 			{page < totalPages && (
-				<button
-					className="btn btn-accent mt-4"
-					onClick={handleMoreReviews}
-					disabled={loading}
-				>
-					{loading ? "Loading..." : "Load More"}
-				</button>
+				<div className="card-actions justify-center">
+					<button
+						className="btn btn-accent my-4"
+						onClick={handleMoreReviews}
+						disabled={loading}
+					>
+						{loading ? "Loading..." : "Load More"}
+					</button>
+				</div>
 			)}
+			<div className="w-1/2 mx-auto flex flex-col md:flex-row justify-between md:gap-12 text-sm text-black/70 mb-4 border-t-2 border-fuchsia-200 ">
+				<p>
+					Showing review{" "}
+					<span className="font-bold text-fuchsia-900">{reviews.length}</span>{" "}
+					of {totalReviews}
+				</p>
+				<p>
+					Currently on page{" "}
+					<span className="font-black text-fuchsia-900">{page}</span> of{" "}
+					{totalPages}
+				</p>
+			</div>
 		</div>
 	);
 };
