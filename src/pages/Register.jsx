@@ -69,8 +69,8 @@ const Register = () => {
 						body: JSON.stringify(userData),
 					});
 					userProfileInfo(displayName, photoURL);
-					console.log(userData);
-					console.log(result);
+					/* console.log(userData);
+					console.log(result); */
 				});
 			})
 			.catch((error) => {

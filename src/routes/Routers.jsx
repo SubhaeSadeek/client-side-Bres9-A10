@@ -8,8 +8,8 @@ import Home from "../pages/Home";
 import Layout from "../pages/Layout";
 import Login from "../pages/Login";
 import MyReviews from "../pages/MyReviews";
+import MyWatchList from "../pages/MyWatchList";
 import Register from "../pages/Register";
-import WatchList from "../pages/WatchList";
 import PrivateRoute from "./PrivateRoute";
 
 const Routers = createBrowserRouter([
@@ -63,7 +63,7 @@ const Routers = createBrowserRouter([
 				path: "/watchList",
 				element: (
 					<PrivateRoute>
-						<WatchList></WatchList>
+						<MyWatchList></MyWatchList>
 					</PrivateRoute>
 				),
 			},
