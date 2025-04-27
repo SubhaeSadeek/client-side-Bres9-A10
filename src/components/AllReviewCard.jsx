@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const ReviewCard = ({ review }) => {
+const AllReviewCard = ({ review }) => {
 	const { title, image, yearOfPublished, ratingOfGame, genre, _id } = review;
 
 	return (
@@ -25,4 +25,4 @@ const ReviewCard = ({ review }) => {
 	);
 };
 
-export default ReviewCard;
+export default AllReviewCard;

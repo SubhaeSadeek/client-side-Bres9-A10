@@ -1,12 +1,13 @@
 import { useLoaderData } from "react-router-dom";
-import ReviewCard from "../components/ReviewCard";
+import AllReviewCard from "../components/AllReviewCard";
 
 const AllReviews = () => {
 	const allReviews = useLoaderData();
 	return (
 		<div>
 			{allReviews.map((review) => (
-				<ReviewCard key={review._id} review={review}></ReviewCard>
+				// <AllReviewCard key={review._id} review={review}></AllReviewCard>
+				<AllReviewCard key={review._id} review={review}></AllReviewCard>
 			))}
 		</div>
 	);

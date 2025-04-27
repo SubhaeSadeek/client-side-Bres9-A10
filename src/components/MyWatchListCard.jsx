@@ -1,25 +1,66 @@
 const MyWatchListCard = ({ watchList }) => {
-	const { title, image, yearOfPublished, ratingOfGame, genre, _id } = watchList;
+	const { title, yearOfPublished, ratingOfGame, genre, userName, _id } =
+		watchList;
+
+	const handleWatchListDelete = (id) => {
+		fetch(`http://localhost:5001/myWatchList/${id}`, {
+			method: "DELETE",
+		})
+			.then((res) => res.json())
+			.then((data) => console.log(data));
+
+		/* Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, delete review!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				fetch(`http://localhost:5001/myWatchList/${_id}`, {
+					method: "DELETE",
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						console.log(data);
+						if (data.deletedCount) {
+							Swal.fire({
+								title: "Deleted!",
+								text: "Your Review has been deleted.",
+								icon: "success",
+							}); */
+		/* const remainingWatchList = myWatchList.filter(
+								(list) => list._id != id
+							);
+							setMyWatchList(remainingWatchList); */
+		/* 			}
+					});
+			}
+		}); */
+	};
 
 	return (
-		<div className="card card-side justify-around w-5/6 mx-auto bg-accent-content/20 shadow-sm mb-4 md:pl-12 ">
-			<figure>
-				<img
-					className="max-w-sm  h-40 rounded-2xl"
-					src={image}
-					alt={`Cover Image of video Game ${title}`}
-				/>
-			</figure>
-			<div className="card-body">
-				<h1 className="text-xl font-bold">{title}</h1>
-				<p className="">Genre: {genre} </p>
-				<p className="">Publishing Year: {yearOfPublished}</p>
-				<p className="">Rating: {ratingOfGame}</p>
-				<NavLink to={`/details/${_id}`}>
-					<button className="btn btn-accent">Explore Detail</button>
-				</NavLink>
-			</div>
-		</div>
+		<>
+			<tr className="hover:bg-base-300" key={_id}>
+				<th></th>
+				<td>{title}</td>
+				<td>{yearOfPublished}</td>
+				<td>{ratingOfGame}</td>
+				<td>{genre}</td>
+				<td>{userName}</td>
+				<td>
+					<button className="btn bg-blue-600 mr-2">E</button>
+					<button
+						onClick={() => handleWatchListDelete(_id)}
+						className="btn bg-red-400"
+					>
+						X
+					</button>
+				</td>
+			</tr>
+		</>
 	);
 };
 
