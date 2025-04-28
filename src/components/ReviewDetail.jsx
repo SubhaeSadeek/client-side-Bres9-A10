@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 
 const ReviewDetail = () => {
 	const { user } = useContext(AuthContext);
+	const [disabled, setDisabled] = useState(false);
 	const reviewData = useLoaderData();
+
 	const {
 		ratingOfGame,
 		review,
@@ -40,6 +42,7 @@ const ReviewDetail = () => {
 					});
 				}
 			});
+		setDisabled(true);
 	};
 	return (
 		<div>
@@ -65,7 +68,11 @@ const ReviewDetail = () => {
 			</div>
 			{user && (
 				<div className="flex justify-center mb-8">
-					<button className="btn btn-accent" onClick={handleAddWatchList}>
+					<button
+						className="btn btn-accent"
+						onClick={handleAddWatchList}
+						disabled={disabled}
+					>
 						Add to Watch List
 					</button>
 				</div>

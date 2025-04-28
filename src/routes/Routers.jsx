@@ -58,6 +58,8 @@ const Routers = createBrowserRouter([
 						<UpdateReview></UpdateReview>
 					</PrivateRoute>
 				),
+				loader: ({ params }) =>
+					fetch(`http://localhost:5001/review/${params.id}`),
 			},
 			{
 				path: "/watchList",

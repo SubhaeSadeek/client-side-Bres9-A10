@@ -1,17 +1,27 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 
 const UpdateReview = () => {
 	const { user } = useContext(AuthContext);
-	const addReviewHandler = (e) => {
+
+	const currentReview = useLoaderData();
+	/* const { title, image, yearOfPublished, ratingOfGame, genre, review, _id } =
+		currentReview; */
+	const [title, setTitle] = useState(currentReview.title);
+	const [image, setImage] = useState(currentReview.image);
+	const [yearOfPublished, setYearOfPublished] = useState(
+		currentReview.yearOfPublished
+	);
+	const [ratingOfGame, setRatingOfGame] = useState(currentReview.ratingOfGame);
+	const [genre, setGenre] = useState(currentReview.genre);
+	const [review, setReview] = useState(currentReview.review);
+	const { _id } = currentReview;
+
+	const updateReviewHandler = (e) => {
 		e.preventDefault();
-		const title = e.target.gameTitle.value;
-		const image = e.target.imageURL.value;
-		const yearOfPublished = e.target.yearPublished.value;
-		const ratingOfGame = e.target.rating.value;
-		const genre = e.target.genre.value;
-		const review = e.target.review.value;
+
 		const userName = user.displayName;
 		const email = user.email;
 
@@ -25,8 +35,8 @@ const UpdateReview = () => {
 			userName,
 			email,
 		};
-		fetch("http://localhost:5001/review", {
-			method: "POST",
+		fetch(`http://localhost:5001/review/${_id}`, {
+			method: "PUT",
 			headers: {
 				"content-type": "application/json",
 			},
@@ -34,7 +44,8 @@ const UpdateReview = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				if (data.insertedId) {
+				console.log(data);
+				if (data.modifiedCount) {
 					Swal.fire({
 						title: "Success!",
 						text: "Your Review Updated successfully",
@@ -54,7 +65,7 @@ const UpdateReview = () => {
 			</h1>
 			<h3 className="text-xl font-medium text-center">Please update below:</h3>
 			<form
-				onSubmit={addReviewHandler}
+				onSubmit={updateReviewHandler}
 				className="w-11/12  mx-auto mt-12 bg-blue-900/50 mb-8 rounded-2xl"
 			>
 				<div className="flex justify-around">
@@ -67,6 +78,8 @@ const UpdateReview = () => {
 							className="input"
 							placeholder="name of the game"
 							name="gameTitle"
+							value={title}
+							onChange={(e) => setTitle(e.target.value)}
 						/>
 						<label className="label">Cover Image URL</label>
 						<input
@@ -74,6 +87,8 @@ const UpdateReview = () => {
 							className="input"
 							placeholder="Cover Image URL"
 							name="imageURL"
+							value={image}
+							onChange={(e) => setImage(e.target.value)}
 						/>
 						<label className="label">Publishing Year</label>
 						<input
@@ -81,6 +96,8 @@ const UpdateReview = () => {
 							className="input"
 							placeholder="publishing year, eg. 2025"
 							name="yearPublished"
+							value={yearOfPublished}
+							onChange={(e) => setYearOfPublished(e.target.value)}
 						/>
 						<label className="label">Rating</label>
 						<input
@@ -91,9 +108,16 @@ const UpdateReview = () => {
 							className="input"
 							placeholder="rating"
 							name="rating"
+							value={ratingOfGame}
+							onChange={(e) => setRatingOfGame(e.target.value)}
 						/>
 						<label className="label">Genre</label>
-						<select defaultValue="Pick a Genre" className="select" name="genre">
+						<select
+							className="select"
+							name="genre"
+							value={genre}
+							onChange={(e) => setGenre(e.target.value)}
+						>
 							<option disabled={true}>Pick a Genre</option>
 							<option>Action</option>
 							<option>RPG</option>
@@ -108,18 +132,25 @@ const UpdateReview = () => {
 							placeholder="your Review..."
 							className="textarea textarea-sm h-44"
 							name="review"
+							value={review}
+							onChange={(e) => setReview(e.target.value)}
 						></textarea>
 
 						<label className="label">User Name</label>
 						<input
 							type="text"
-							className="input"
+							className="input text-amber-800 font-semibold"
 							value={user.displayName}
 							readOnly
 						/>
 
 						<label className="label">Email</label>
-						<input type="text" className="input" value={user.email} readOnly />
+						<input
+							type="text"
+							className="input text-amber-800 font-semibold"
+							value={user.email}
+							readOnly
+						/>
 					</fieldset>
 				</div>
 				<div className="flex justify-center py-8">

@@ -26,9 +26,10 @@ const MyReviewsCard = ({ myReview }) => {
 				</p>
 			</div>
 			<div className="card-actions justify-center mb-4">
-				<NavLink to={"/"}>
-					<button className="btn btn-info">Detail Review Here</button>
+				<NavLink to={`/updateReview/${_id}`}>
+					<button className="btn btn-info">Update</button>
 				</NavLink>
+				<button className="btn btn-error">Delete</button>
 			</div>
 		</div>
 	);

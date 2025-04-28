@@ -1,15 +1,13 @@
-const MyWatchListCard = ({ watchList }) => {
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
+const MyWatchListCard = ({ watchList, myWatchList, setMyWatchList }) => {
 	const { title, yearOfPublished, ratingOfGame, genre, userName, _id } =
 		watchList;
+	const navigate = useNavigate();
 
 	const handleWatchListDelete = (id) => {
-		fetch(`http://localhost:5001/myWatchList/${id}`, {
-			method: "DELETE",
-		})
-			.then((res) => res.json())
-			.then((data) => console.log(data));
-
-		/* Swal.fire({
+		Swal.fire({
 			title: "Are you sure?",
 			text: "You won't be able to revert this!",
 			icon: "warning",
@@ -19,7 +17,7 @@ const MyWatchListCard = ({ watchList }) => {
 			confirmButtonText: "Yes, delete review!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				fetch(`http://localhost:5001/myWatchList/${_id}`, {
+				fetch(`http://localhost:5001/myWatchList/${id}`, {
 					method: "DELETE",
 				})
 					.then((res) => res.json())
@@ -30,33 +28,40 @@ const MyWatchListCard = ({ watchList }) => {
 								title: "Deleted!",
 								text: "Your Review has been deleted.",
 								icon: "success",
-							}); */
-		/* const remainingWatchList = myWatchList.filter(
+							});
+							const remainingWatchList = myWatchList.filter(
 								(list) => list._id != id
 							);
-							setMyWatchList(remainingWatchList); */
-		/* 			}
+							setMyWatchList(remainingWatchList);
+						}
 					});
 			}
-		}); */
+		});
 	};
-
+	const handleDetailClick = (id) => {
+		navigate(`/details/${id}`);
+	};
 	return (
 		<>
-			<tr className="hover:bg-base-300" key={_id}>
+			<tr className="hover:bg-base-300 text-blue-700 font-semibold" key={_id}>
 				<th></th>
 				<td>{title}</td>
-				<td>{yearOfPublished}</td>
-				<td>{ratingOfGame}</td>
-				<td>{genre}</td>
-				<td>{userName}</td>
+				<td className="text-blue-700">{yearOfPublished}</td>
+				<td className="text-blue-700">{ratingOfGame}</td>
+				<td className="text-blue-700">{genre}</td>
+				<td className="text-amber-700">{userName}</td>
 				<td>
-					<button className="btn bg-blue-600 mr-2">E</button>
+					<button
+						className="btn bg-green-600 mr-2"
+						onClick={() => handleDetailClick(_id)}
+					>
+						Detail
+					</button>
 					<button
 						onClick={() => handleWatchListDelete(_id)}
 						className="btn bg-red-400"
 					>
-						X
+						Delete
 					</button>
 				</td>
 			</tr>
