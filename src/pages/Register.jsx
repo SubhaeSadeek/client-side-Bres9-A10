@@ -63,7 +63,7 @@ const Register = () => {
 						photoURL: user.photoURL,
 						signInTime: user.metadata.lastSignInTime,
 					};
-					fetch("http://localhost:5001/user", {
+					fetch("https://server-side-bres9-a10.onrender.com/user", {
 						method: "POST",
 						headers: { "content-type": "application/json" },
 						body: JSON.stringify(userData),

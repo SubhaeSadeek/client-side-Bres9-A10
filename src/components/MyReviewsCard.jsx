@@ -14,7 +14,7 @@ const MyReviewsCard = ({ myReview, myReviews, setMyReviews }) => {
 			confirmButtonText: "Yes, delete review!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				fetch(`http://localhost:5001/myReview/${id}`, {
+				fetch(`https://server-side-bres9-a10.onrender.com/myReview/${id}`, {
 					method: "DELETE",
 				})
 					.then((res) => res.json())

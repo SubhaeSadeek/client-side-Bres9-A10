@@ -12,7 +12,9 @@ const GameCardContainer = () => {
 	const fetchReviews = async () => {
 		setLoading(true);
 
-		fetch(`http://localhost:5001/limitReview?page=${page}&limit=${LIMIT}`)
+		fetch(
+			`https://server-side-bres9-a10.onrender.com/limitReview?page=${page}&limit=${LIMIT}`
+		)
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error("Failed to fetch posts");

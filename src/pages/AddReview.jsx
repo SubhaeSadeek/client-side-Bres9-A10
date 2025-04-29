@@ -28,7 +28,7 @@ const AddReview = () => {
 			email,
 		};
 		console.log(addedReview);
-		fetch("http://localhost:5001/addReview", {
+		fetch("https://server-side-bres9-a10.onrender.com/addReview", {
 			method: "POST",
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify(addedReview),

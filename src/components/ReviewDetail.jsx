@@ -28,7 +28,7 @@ const ReviewDetail = () => {
 			watchListEmail: user.email,
 			addedAt: new Date(),
 		};
-		fetch("http://localhost:5001/addWatchList", {
+		fetch("https://server-side-bres9-a10.onrender.com/addWatchList", {
 			method: "POST",
 			headers: { "content-type": "application/json" },
 			body: JSON.stringify(addWatchListData),

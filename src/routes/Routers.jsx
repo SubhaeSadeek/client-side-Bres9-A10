@@ -26,13 +26,16 @@ const Routers = createBrowserRouter([
 			{
 				path: "/allReviews",
 				element: <AllReviews></AllReviews>,
-				loader: () => fetch("http://localhost:5001/review"),
+				loader: () =>
+					fetch("https://server-side-bres9-a10.onrender.com/review"),
 			},
 			{
 				path: "/details/:id",
 				element: <ReviewDetail></ReviewDetail>,
 				loader: ({ params }) =>
-					fetch(`http://localhost:5001/review/${params.id}`),
+					fetch(
+						`https://server-side-bres9-a10.onrender.com/review/${params.id}`
+					),
 			},
 
 			{
@@ -59,7 +62,9 @@ const Routers = createBrowserRouter([
 					</PrivateRoute>
 				),
 				loader: ({ params }) =>
-					fetch(`http://localhost:5001/review/${params.id}`),
+					fetch(
+						`https://server-side-bres9-a10.onrender.com/review/${params.id}`
+					),
 			},
 			{
 				path: "/watchList",

@@ -11,7 +11,7 @@ const MyWatchList = () => {
 	const userEmail = user.email;
 	useEffect(() => {
 		if (userEmail) {
-			fetch("http://localhost:5001/myWatchList", {
+			fetch("https://server-side-bres9-a10.onrender.com/myWatchList", {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({ userEmail }),

@@ -17,7 +17,7 @@ const MyWatchListCard = ({ watchList, myWatchList, setMyWatchList }) => {
 			confirmButtonText: "Yes, delete review!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				fetch(`http://localhost:5001/myWatchList/${id}`, {
+				fetch(`https://server-side-bres9-a10.onrender.com/myWatchList/${id}`, {
 					method: "DELETE",
 				})
 					.then((res) => res.json())

@@ -11,7 +11,7 @@ const MyReviews = () => {
 
 	useEffect(() => {
 		if (email) {
-			fetch("http://localhost:5001/review", {
+			fetch("https://server-side-bres9-a10.onrender.com/review", {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({ email }),

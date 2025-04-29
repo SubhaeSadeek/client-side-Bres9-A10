@@ -37,7 +37,7 @@ const UpdateReview = () => {
 			userName,
 			email,
 		};
-		fetch(`http://localhost:5001/review/${_id}`, {
+		fetch(`https://server-side-bres9-a10.onrender.com/review/${_id}`, {
 			method: "PUT",
 			headers: {
 				"content-type": "application/json",
