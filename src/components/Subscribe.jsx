@@ -18,9 +18,7 @@ const Subscribe = () => {
 								className="input input-bordered w-2/3"
 								required
 							/>
-							<button className="btn w-1/4 bg-gradient-to-l from-orange-400 to-fuchsia-400 border-none">
-								Subscribe
-							</button>
+							<button className="btn btn-info w-1/4 ">Subscribe</button>
 						</div>
 					</form>
 				</div>
