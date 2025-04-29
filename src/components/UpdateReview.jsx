@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import useTitle from "../utils/useTitle";
 
 const UpdateReview = () => {
+	useTitle("Update Review");
 	const { user } = useContext(AuthContext);
 
 	const currentReview = useLoaderData();
@@ -54,8 +56,6 @@ const UpdateReview = () => {
 					});
 				}
 			});
-
-		e.target.reset();
 	};
 
 	return (

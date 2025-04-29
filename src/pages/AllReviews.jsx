@@ -1,7 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 import AllReviewCard from "../components/AllReviewCard";
+import useTitle from "../utils/useTitle";
 
 const AllReviews = () => {
+	useTitle("All review");
 	const allReviews = useLoaderData();
 	return (
 		<div>

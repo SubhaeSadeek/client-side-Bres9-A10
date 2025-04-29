@@ -1,6 +1,8 @@
 import GameCardContainer from "../components/GameCardContainer";
+import useTitle from "../utils/useTitle";
 
 const Home = () => {
+	useTitle("Home");
 	const carousalScroll = (e, img_num) => {
 		e.preventDefault();
 		const slide = document.getElementById(`slide${img_num}`);

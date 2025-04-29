@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import useTitle from "../utils/useTitle";
 
 const ReviewDetail = () => {
+	useTitle("Detail Review");
 	const { user } = useContext(AuthContext);
 	const [disabled, setDisabled] = useState(false);
 	const reviewData = useLoaderData();

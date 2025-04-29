@@ -1,7 +1,39 @@
 import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const MyReviewsCard = ({ myReview }) => {
+const MyReviewsCard = ({ myReview, myReviews, setMyReviews }) => {
 	const { title, image, yearOfPublished, ratingOfGame, genre, _id } = myReview;
+	const handleMyReviewDelete = (id) => {
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, delete review!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				fetch(`http://localhost:5001/myReview/${id}`, {
+					method: "DELETE",
+				})
+					.then((res) => res.json())
+					.then((data) => {
+						if (data.deletedCount) {
+							Swal.fire({
+								title: "Deleted!",
+								text: "Your Review has been deleted.",
+								icon: "success",
+							});
+							const remainingMyReviews = myReviews.filter(
+								(rev) => rev._id != id
+							);
+							setMyReviews(remainingMyReviews);
+						}
+					});
+			}
+		});
+	};
 
 	return (
 		<div className="card bg-base-300 shadow-sm">
@@ -29,7 +61,12 @@ const MyReviewsCard = ({ myReview }) => {
 				<NavLink to={`/updateReview/${_id}`}>
 					<button className="btn btn-info">Update</button>
 				</NavLink>
-				<button className="btn btn-error">Delete</button>
+				<button
+					onClick={() => handleMyReviewDelete(_id)}
+					className="btn btn-error"
+				>
+					Delete
+				</button>
 			</div>
 		</div>
 	);

@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import MyWatchListCard from "../components/MyWatchListCard";
 import { AuthContext } from "../provider/AuthProvider";
+import useTitle from "../utils/useTitle";
 
 const MyWatchList = () => {
+	useTitle("My Watch List");
 	const [myWatchList, setMyWatchList] = useState([]);
 
 	const { user } = useContext(AuthContext);

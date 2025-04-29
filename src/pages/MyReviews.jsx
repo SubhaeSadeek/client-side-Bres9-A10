@@ -1,8 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import MyReviewsCard from "../components/MyReviewsCard";
 import { AuthContext } from "../provider/AuthProvider";
+import useTitle from "../utils/useTitle";
 
 const MyReviews = () => {
+	useTitle("My Review");
 	const [myReviews, setMyReviews] = useState([]);
 	const { user } = useContext(AuthContext);
 	const email = user?.email;
@@ -20,7 +22,6 @@ const MyReviews = () => {
 		}
 	}, [email]);
 
-	console.log("here is my all reviews", myReviews);
 	return (
 		<div>
 			<h1 className="text-center text-2xl font-bold text-cyan-700 mt-8">
@@ -29,7 +30,12 @@ const MyReviews = () => {
 			</h1>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 				{myReviews.map((myReview) => (
-					<MyReviewsCard key={myReview._id} myReview={myReview}></MyReviewsCard>
+					<MyReviewsCard
+						key={myReview._id}
+						myReview={myReview}
+						myReviews={myReviews}
+						setMyReviews={setMyReviews}
+					></MyReviewsCard>
 				))}
 			</div>
 		</div>

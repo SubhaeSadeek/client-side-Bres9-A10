@@ -34,13 +34,13 @@ const GameCardContainer = () => {
 	useEffect(() => {
 		fetchReviews();
 	}, [page]);
-	console.log(reviews);
+
 	const handleMoreReviews = () => {
 		if (page < totalPages) {
 			setPage((prev) => prev + 1);
 		}
 	};
-	console.log("here we have ", page, totalPages, totalReviews);
+
 	return (
 		<div>
 			<div className="grid grid-cols-1 md:grid-cols-3	gap-4 w-11/12 mx-auto my-12 ">

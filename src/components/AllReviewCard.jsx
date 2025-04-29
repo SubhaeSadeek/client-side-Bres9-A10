@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import useTitle from "../utils/useTitle";
 
 const AllReviewCard = ({ review }) => {
+	useTitle("All Reviews");
 	const { title, image, yearOfPublished, ratingOfGame, genre, _id } = review;
 
 	return (

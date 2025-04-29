@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import useTitle from "../utils/useTitle";
 
 const AddReview = () => {
+	useTitle("Add Review");
 	const { user } = useContext(AuthContext);
 	const addReviewHandler = (e) => {
 		e.preventDefault();
