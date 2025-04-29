@@ -28,11 +28,9 @@ const AddReview = () => {
 			email,
 		};
 		console.log(addedReview);
-		fetch("http://localhost:5001/review", {
+		fetch("http://localhost:5001/addReview", {
 			method: "POST",
-			headers: {
-				"content-type": "application/json",
-			},
+			headers: { "content-type": "application/json" },
 			body: JSON.stringify(addedReview),
 		})
 			.then((res) => res.json())
@@ -42,6 +40,13 @@ const AddReview = () => {
 						title: "Success!",
 						text: "Your Review added successfully",
 						icon: "success",
+						confirmButtonText: "Ok",
+					});
+				} else {
+					Swal.fire({
+						title: "Failed",
+						text: "Your Review is not added, please try again",
+						icon: "warning",
 						confirmButtonText: "Ok",
 					});
 				}

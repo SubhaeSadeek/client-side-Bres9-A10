@@ -1,4 +1,5 @@
 import GameCardContainer from "../components/GameCardContainer";
+import Subscribe from "../components/Subscribe";
 import useTitle from "../utils/useTitle";
 
 const Home = () => {
@@ -102,6 +103,7 @@ const Home = () => {
 				</div>
 			</div>
 			<GameCardContainer></GameCardContainer>
+			<Subscribe></Subscribe>
 		</div>
 	);
 };

@@ -59,8 +59,8 @@ const GameCardContainer = () => {
 							<p>rating: {review?.ratingOfGame}</p>
 						</div>
 						<div className="card-actions justify-center mb-4">
-							<NavLink to={"/allReviews/:id"}>
-								<button className="btn btn-info">Detail Review Here</button>
+							<NavLink to={"/allReviews"}>
+								<button className="btn btn-info">See all Reviews</button>
 							</NavLink>
 						</div>
 					</div>
